@@ -43,7 +43,7 @@ class UserControllerTest {
 
 @Test
 	public void mockMvcTest () throws Exception {
-		this.mockMvc.perform(get("/create")).andDo(print())
+		this.mockMvc.perform(get("/users/create")).andDo(print())
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.username").value("Pritvi"))
 				.andExpect(jsonPath("$.email").value("udhin1998@gmail.com"))
