@@ -21,22 +21,21 @@ public class Controller {
         return repository.findById(id).orElse(null);
     }
 
-    @GetMapping("/create")
-    public User createUser() {
-        return new User(1L,"Pritvi", "udhin1998@gmail.com");
+    @PostMapping("/create")
+    public User createUser(@RequestBody User user) {
+        return repository.save(user);
     }
 
     @PutMapping("update/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User newUser) {
        User user = repository.findById(id).orElse(null);
        if (user == null) return null;
-       user.setId(newUser.getId());
        user.setUsername(newUser.getUsername());
        user.setEmail(newUser.getEmail());
        return repository.save(user);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteUser(@PathVariable Long id) {
         repository.deleteById(id);
     }
